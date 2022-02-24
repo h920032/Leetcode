@@ -85,6 +85,25 @@ class Solution:
             head.next = heap_pop()
             head = head.next
         return result
+
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        if list1 == None:
+            return list2
+        elif list2 == None:
+            return list1
+        if list1.val <= list2.val:
+            return ListNode(val = list1.val, next = self.mergeTwoLists(list1.next, list2))
+        else: return ListNode(val = list2.val, next = self.mergeTwoLists(list1, list2.next))
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        k = len(lists)
+        if k == 0: return None
+        if k == 1: return lists[0]
+        if k == 2: return self.mergeTwoLists(lists[0], lists[1])
+        return self.mergeTwoLists(self.mergeKLists(lists[:k//2]),self.mergeKLists(lists[k//2:]))
+
+
         
             
 
