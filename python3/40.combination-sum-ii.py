@@ -27,9 +27,7 @@ class Solution:
         for i in range(l - 1, -1, -1):
             if i != l - 1 and candidates[i] == candidates[i + 1]:
                 continue
-            for j in dp(target, i):
-                if j not in out:
-                    out.append(j)
+            out += dp(target, i)
         return out
         
 # @lc code=end
