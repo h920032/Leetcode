@@ -2,5 +2,5 @@
 ## Status
 |Language|Easy|Medium|Hard|Total|
 |---|---|---|---|---|
-|Python3|26|70|4|100|
+|Python3|26|83|5|114|
 |C++|0|0|0|0|
