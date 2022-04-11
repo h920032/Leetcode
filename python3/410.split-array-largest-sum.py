@@ -20,6 +20,24 @@ class Solution:
                     break
             return min_s
         return dp(0, m)
-                
+
+# Special Solution with Binary Search
+class Solution:
+    def splitArray(self, nums: List[int], m: int) -> int:
+        l, r = max(nums), sum(nums)
+        while l < r:
+            mid = (l + r) // 2
+            s = 0
+            count = 1
+            for n in nums:
+                s += n
+                if s > mid:
+                    count += 1
+                    s = n
+            if count > m:
+                l = mid + 1
+            else: r = mid
+        return r
+
 # @lc code=end
 
