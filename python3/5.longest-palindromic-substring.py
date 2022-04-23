@@ -80,5 +80,26 @@ class Solution:
                             max_ij = (i,j)
         return s[max_ij[1]:max_ij[0]+1]
 
+# manacher algo
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        s = '#' + '#'.join(s) + '#'
+        p = [0] * len(s)
+        max_right, max_center = 0, 0
+        max_radius, max_c = 0, 0
+        for i in range(len(s)):
+            if i < max_right:
+                p[i] = min(max_right - i, p[max_center*2 - i])
+            while i + p[i] + 1 < len(s) and i - p[i] - 1 >= 0 and s[i + p[i] + 1] == s[i - p[i] - 1]:
+                p[i] += 1
+            if i + p[i] > max_right:
+                max_center = i
+                max_right = max_center + p[i]
+        for i in range(len(p)):
+            if max_radius < p[i]:
+                max_radius = p[i]
+                max_canter = i
+        return ''.join(s[max_canter - max_radius: max_canter + max_radius + 1].split('#'))
+
 # @lc code=end
 
